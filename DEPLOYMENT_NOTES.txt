@@ -1,0 +1,7 @@
+Before publishing:
+1. Change the admin password from /admin/password.
+2. Set SECRET_KEY to a long random value.
+3. Use HTTPS.
+4. Use a production WSGI server/host.
+5. Keep database and uploads backed up.
+6. Replace the sample product descriptions with your exact product information.

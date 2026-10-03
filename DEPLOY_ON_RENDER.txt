@@ -1,0 +1,12 @@
+SAI STEEL - RENDER DEPLOYMENT
+
+This package is prepared for a Render Python Web Service.
+Build command: pip install -r requirements.txt
+Start command: gunicorn app:app
+
+IMPORTANT: this current version uses SQLite and local uploads. Render free web services have ephemeral filesystems, so database/upload changes are not a durable business backup. For permanent admin-managed products, move the database/uploads to persistent storage before relying on this as the production store.
+
+Admin path: /admin/login
+Initial username: admin
+Initial password: admin123
+Change the password immediately after first login.
