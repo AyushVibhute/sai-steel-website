@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Premium Home Essentials{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Chikurde • Premium Collection</div>
+      <h1>Premium essentials for <em>every home.</em></h1>
+      <p>Shop steel utensils, kitchen essentials, home appliances and attractive gift sets from Sai Steel, Chikurde.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ url_for('products') }}">Explore Products</a>
+        <a class="btn btn-gold" href="https://wa.me/{{ whatsapp }}?text=Hello%20Sai%20Steel,%20I%20want%20to%20know%20about%20your%20products." target="_blank">Order on WhatsApp</a>
+      </div>
+      <p style="font-size:13px;margin-top:18px">📍 {{ location }}</p>
+    </div>
+    <div class="hero-card">
+      <img src="{{ url_for('static', filename='images/dinner-set.jpg') }}" alt="Sai Steel dinner set">
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Our collection</div>
+        <h2 class="section-title">Featured Products</h2>
+        <p class="section-sub">A few customer-friendly picks from our store.</p>
+      </div>
+      <a class="btn btn-outline" href="{{ url_for('products') }}">View All</a>
+    </div>
+    <div class="products-grid">
+      {% for p in featured %}
+      <article class="product-card">
+        <div class="product-image">
+          {% if p.image %}
+            {% if p.image.startswith('http') %}
+              <img src="{{ p.image }}" alt="{{ p.name }}">
+            {% elif p.image in ['swami-samarth-frame.png','pressure-cooker.jpg','water-filter.jpg','dinner-set.jpg'] %}
+              <img src="{{ url_for('static', filename='images/' ~ p.image) }}" alt="{{ p.name }}">
+            {% else %}
+              <img src="{{ url_for('static', filename='images/' ~ p.image) }}" alt="{{ p.name }}">
+            {% endif %}
+          {% endif %}
+        </div>
+        <div class="product-body">
+          <div class="category">{{ p.category }}</div>
+          <h3>{{ p.name }}</h3>
+          <div class="price">₹{{ "%.0f"|format(p.price) }}</div>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="{{ url_for('product_detail', product_id=p.id) }}">Details</a>
+            <a class="btn btn-gold" target="_blank" href="https://wa.me/{{ whatsapp }}?text=Hello%20Sai%20Steel,%20I%20want%20to%20order%20{{ p.name|urlencode }}%20for%20₹{{ '%.0f'|format(p.price) }}.">WhatsApp</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="feature-strip">
+  <div class="container feature-grid">
+    <div class="feature"><div class="icon">01</div><h3>Quality Collection</h3><p>Carefully selected steelware, appliances and home essentials.</p></div>
+    <div class="feature"><div class="icon">02</div><h3>Gift Sets</h3><p>Useful and attractive options for festivals, family functions and gifting.</p></div>
+    <div class="feature"><div class="icon">03</div><h3>Easy WhatsApp Orders</h3><p>See a product you like? Send us a WhatsApp message to enquire or order.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta">
+      <div class="eyebrow">Sai Steel • Chikurde</div>
+      <h2>Looking for something specific?</h2>
+      <p>Message us on WhatsApp and ask about our latest steel utensils, appliances, furniture or gift sets.</p>
+      <a class="btn btn-gold" href="https://wa.me/{{ whatsapp }}" target="_blank">Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

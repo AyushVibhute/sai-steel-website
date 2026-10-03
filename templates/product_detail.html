@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container detail-grid">
+    <div class="detail-image">
+      {% if product.image %}
+        <img src="{{ url_for('static', filename='images/' ~ product.image) }}" alt="{{ product.name }}">
+      {% endif %}
+    </div>
+    <div class="detail">
+      <div class="eyebrow">{{ product.category }}</div>
+      <h1>{{ product.name }}</h1>
+      <div class="price">₹{{ "%.0f"|format(product.price) }}</div>
+      <p>{{ product.description or "Please contact us for more product details." }}</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" target="_blank" href="https://wa.me/{{ whatsapp }}?text=Hello%20Sai%20Steel,%20I%20am%20interested%20in%20{{ product.name|urlencode }}%20for%20₹{{ '%.0f'|format(product.price) }}.">Order / Enquire on WhatsApp</a>
+        <a class="btn btn-outline" href="{{ url_for('products') }}">Back to Products</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

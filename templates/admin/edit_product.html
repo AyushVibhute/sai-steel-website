@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% block title %}Edit Product{% endblock %}
+{% block content %}
+<div class="admin-top">
+  <div><h1>Edit Product</h1><div style="color:#687286;font-size:13px">Product details appear automatically on the public website.</div></div>
+</div>
+<div class="admin-card">
+<form method="post" enctype="multipart/form-data">
+<div class="form-grid">
+  <div class="form-group"><label>Product Name</label><input name="name" value="{{ product.name if product else '' }}" required></div>
+  <div class="form-group"><label>Price (₹)</label><input type="number" min="0" step="1" name="price" value="{{ product.price if product else '' }}" required></div>
+  <div class="form-group"><label>Category</label><input name="category" value="{{ product.category if product else '' }}" placeholder="e.g. Kitchen Appliances" required></div>
+  <div class="form-group"><label>Product Image</label><input type="file" name="image" accept=".jpg,.jpeg,.png,.webp"></div>
+  <div class="form-group full"><label>Description</label><textarea name="description" placeholder="Write product details...">{{ product.description if product else '' }}</textarea></div>
+  <div class="form-group full checkbox"><input type="checkbox" name="featured" {% if product and product.featured %}checked{% endif %}><label>Show this product as Featured</label></div>
+</div>
+<div style="margin-top:20px;display:flex;gap:10px">
+  <button class="btn btn-primary" type="submit">{{ "Update Product" if product else "Add Product" }}</button>
+  <a class="btn btn-outline" href="{{ url_for('admin_products') }}">Cancel</a>
+</div>
+</form>
+</div>
+{% endblock %}

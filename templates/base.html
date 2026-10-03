@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ short_name }}{% endblock %} | Chikurde</title>
+  <meta name="description" content="Sai Steel Furniture & Home Appliances, Chikurde. Steel utensils, home appliances, gift sets and more.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <span>Premium Steelware • Home Appliances • Gift Sets</span>
+      <span>Call: {{ phone1 }} &nbsp;|&nbsp; {{ phone2 }}</span>
+    </div>
+  </div>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Sai Steel logo">
+        <div class="brand-text">
+          <strong>SAI STEEL</strong>
+          <span>FURNITURE & HOME APPLIANCES</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('products') }}">Products</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+        <a class="btn btn-gold" href="https://wa.me/{{ whatsapp }}" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+  </nav>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="container" style="padding-top:15px">
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>Sai Steel</h3>
+        <p>Premium steel utensils, home appliances and thoughtful gift sets for everyday homes and special occasions.</p>
+      </div>
+      <div>
+        <h3>Visit Us</h3>
+        <p>{{ location }}</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>📞 {{ phone1 }}<br>📞 {{ phone2 }}<br>💬 WhatsApp orders available</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">© 2026 Sai Steel Furniture & Home Appliances, Chikurde. All rights reserved.</div>
+  </footer>
+</body>
+</html>

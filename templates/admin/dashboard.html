@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="admin-top">
+  <div><h1>Dashboard</h1><div style="color:#687286;font-size:13px">Welcome, {{ session.get('admin_username') }}.</div></div>
+  <a class="btn btn-gold" href="{{ url_for('add_product') }}">+ Add Product</a>
+</div>
+<div class="stats">
+  <div class="stat"><span>Total Products</span><strong>{{ total }}</strong></div>
+  <div class="stat"><span>Categories</span><strong>{{ categories }}</strong></div>
+  <div class="stat"><span>Featured Products</span><strong>{{ featured }}</strong></div>
+</div>
+<div class="admin-card">
+  <div class="admin-top"><h2 style="margin:0;color:#071a33">Recent Products</h2><a href="{{ url_for('admin_products') }}">Manage all →</a></div>
+  <div class="table-wrap">
+  <table><thead><tr><th>Image</th><th>Product</th><th>Category</th><th>Price</th></tr></thead>
+  <tbody>
+  {% for p in recent %}
+    <tr><td><img class="admin-product-img" src="{{ url_for('static', filename='images/' ~ p.image) }}" alt=""></td><td>{{ p.name }}</td><td>{{ p.category }}</td><td>₹{{ "%.0f"|format(p.price) }}</td></tr>
+  {% endfor %}
+  </tbody></table>
+  </div>
+</div>
+{% endblock %}

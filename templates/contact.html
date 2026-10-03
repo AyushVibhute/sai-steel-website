@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="eyebrow">Get in touch</div>
+    <h1 class="section-title">Contact Sai Steel</h1>
+    <div class="contact-grid" style="margin-top:30px">
+      <div class="contact-card">
+        <h3>Visit Our Store</h3>
+        <p>📍 {{ location }}</p>
+        <a class="btn btn-primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Chikurde%2C%20Maharashtra">Open Location Search</a>
+      </div>
+      <div class="contact-card">
+        <h3>Call / WhatsApp</h3>
+        <p>Phone 1: {{ phone1 }}<br>Phone 2: {{ phone2 }}</p>
+        <a class="btn btn-gold" target="_blank" href="https://wa.me/{{ whatsapp }}">Message on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
